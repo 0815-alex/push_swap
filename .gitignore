@@ -1,7 +1,0 @@
-# Compiled Object files
-*.o
-# Compiled Static libraries
-*.a
-# Visual Studio Files
-.vscode/*
-
