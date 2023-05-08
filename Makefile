@@ -51,5 +51,5 @@ god:
 	git status
 	git add .
 	git status
-	git commit -m "->Random Makefile Commit<-"
+	git commit -m " ->Random Makefile Commit<- "
 	git status
