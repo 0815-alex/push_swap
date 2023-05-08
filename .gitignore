@@ -1,0 +1,9 @@
+# Compiled Object files
+*.o
+# Compiled Static libraries
+*.a
+# Compiled Files
+*.out
+# Visual Studio Files
+.vscode/*
+
