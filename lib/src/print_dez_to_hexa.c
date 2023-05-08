@@ -1,26 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   print_dez_to_hexa.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: astein <astein@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/08 19:54:25 by astein            #+#    #+#             */
-/*   Updated: 2023/05/08 23:27:39 by astein           ###   ########.fr       */
+/*   Created: 2023/04/24 12:39:19 by astein            #+#    #+#             */
+/*   Updated: 2023/05/08 23:31:59 by astein           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
-# include "../lib/libft_ft_printf.h"
+#include "../libft_ft_printf.h"
 
-//******************************************************************************
-//			Typedefs
-//******************************************************************************
-typedef enum e_bool
+void	print_dez_to_hexa(unsigned long dez_nbr, int *len, t_bool caps)
 {
-	ft_false = 0,
-	ft_true = 1
-}	t_bool;
-
-#endif
+	if (dez_nbr < 16)
+	{
+		if (caps)
+			print_char(HEXA_UPPER[dez_nbr], len);
+		else
+			print_char(HEXA_LOWER[dez_nbr], len);
+		return ;
+	}
+	else
+		print_dez_to_hexa((dez_nbr / 16), len, caps);
+	print_dez_to_hexa((dez_nbr % 16), len, caps);
+}

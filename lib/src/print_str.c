@@ -1,26 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   print_str.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: astein <astein@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/08 19:54:25 by astein            #+#    #+#             */
-/*   Updated: 2023/05/08 23:27:39 by astein           ###   ########.fr       */
+/*   Created: 2023/04/21 11:14:42 by astein            #+#    #+#             */
+/*   Updated: 2023/05/08 23:31:59 by astein           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
-# include "../lib/libft_ft_printf.h"
+#include "../libft_ft_printf.h"
 
-//******************************************************************************
-//			Typedefs
-//******************************************************************************
-typedef enum e_bool
+void	print_str(char *str, int *len)
 {
-	ft_false = 0,
-	ft_true = 1
-}	t_bool;
-
-#endif
+	if (!str)
+		print_str("(null)", len);
+	else
+	{
+		while (*str)
+		{
+			print_char(*str, len);
+			str++;
+		}
+	}
+}

@@ -6,7 +6,7 @@ CFLAGS = -Wall -Werror -Wextra
 RM = rm -f
 
 # Library name and source files
-NAME = libft.a
+NAME = libft_ft_printf.a
 SRC_FOLDER = ./src/
 SRCS = $(SRC_FOLDER)ft_isalpha.c \
 	$(SRC_FOLDER)ft_isdigit.c \
@@ -50,7 +50,13 @@ SRCS = $(SRC_FOLDER)ft_isalpha.c \
 	$(SRC_FOLDER)ft_lstdelone.c \
 	$(SRC_FOLDER)ft_lstclear.c \
 	$(SRC_FOLDER)ft_lstiter.c \
-	$(SRC_FOLDER)ft_lstmap.c
+	$(SRC_FOLDER)ft_lstmap.c \
+	$(SRC_FOLDER)ft_printf.c \
+	$(SRC_FOLDER)print_char.c \
+	$(SRC_FOLDER)print_str.c \
+	$(SRC_FOLDER)print_dez_to_hexa.c \
+	$(SRC_FOLDER)print_ptr.c \
+	$(SRC_FOLDER)print_nbr.c \
 
 # Object files
 OBJS = $(SRCS:.c=.o)

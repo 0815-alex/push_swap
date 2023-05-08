@@ -1,26 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   print_ptr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: astein <astein@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/08 19:54:25 by astein            #+#    #+#             */
-/*   Updated: 2023/05/08 23:27:39 by astein           ###   ########.fr       */
+/*   Created: 2023/04/21 11:50:07 by astein            #+#    #+#             */
+/*   Updated: 2023/05/08 23:31:59 by astein           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
-# include "../lib/libft_ft_printf.h"
+#include "../libft_ft_printf.h"
 
-//******************************************************************************
-//			Typedefs
-//******************************************************************************
-typedef enum e_bool
+void	print_ptr(unsigned long ptr, int *len)
 {
-	ft_false = 0,
-	ft_true = 1
-}	t_bool;
-
-#endif
+	if (!ptr)
+		print_str("(nil)", len);
+	else
+	{
+		print_str("0x", len);
+		print_dez_to_hexa(ptr, len, ft_false);
+	}
+}

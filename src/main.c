@@ -1,32 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstsize.c                                       :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: astein <astein@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/17 13:30:26 by astein            #+#    #+#             */
-/*   Updated: 2023/05/08 23:30:34 by astein           ###   ########.fr       */
+/*   Created: 2023/05/08 19:51:54 by astein            #+#    #+#             */
+/*   Updated: 2023/05/08 23:17:21 by astein           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft_ft_printf.h"
+#include "../include/push_swap.h"
 
-/**
- * @brief	Counts the number of nodes in the list 'lst'.
- * 
- * @param	lst	The beginning of the list.
- * @return	int	The length of the list
- */
-int	ft_lstsize(t_list *lst)
+static t_bool	check_args(int argc, char **argv)
 {
-	int	i;
+	t_bool	result;
+	int		i;
 
-	i = 0;
-	while (lst)
+	result = ft_true;
+	i = 1;
+	if (!argc || argc < 1)
+		result = ft_false;
+	while (i < argc)
 	{
-		lst = lst->next;
-		i++;
+		if (ft_itoa(ft_atoi(argv[i])) != argv[i])
+		{
+			result = ft_false;
+			break ;
+			i++;
+		}
 	}
-	return (i);
+	return (result);
+}
+
+int	main(int argc, char **argv)
+{
+	if (check_args(argc, argv))
+	{
+	}
+	else
+		ft_putstr_fd()
+	return (0);
 }

@@ -1,21 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft.h                                            :+:      :+:    :+:   */
+/*   libft_ft_printf.h                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: astein <astein@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 13:11:36 by astein            #+#    #+#             */
-/*   Updated: 2023/04/19 18:15:36 by astein           ###   ########.fr       */
+/*   Updated: 2023/05/08 23:24:56 by astein           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_H
-# define LIBFT_H
+#ifndef LIBFT_FT_PRINTF_H
+# define LIBFT_FT_PRINTF_H
 
+# include <stdarg.h>
 # include <stdlib.h>
 # include <string.h>
 # include <unistd.h>
+
+//******************************************************************************
+// Hexadecimal Value Definitions
+//******************************************************************************
+# define HEXA_LOWER "0123456789abcdef"
+# define HEXA_UPPER "0123456789ABCDEF"
 
 //******************************************************************************
 //			Typedefs
@@ -26,6 +33,27 @@ typedef struct s_list
 	void			*content;
 	struct s_list	*next;
 }					t_list;
+
+typedef enum e_bool
+{
+	ft_false = 0,
+	ft_true = 1
+}					t_bool;
+
+//******************************************************************************
+//			ft_printf
+//******************************************************************************
+int					ft_printf(const char *str, ...);
+
+//******************************************************************************
+//			Other print functions
+//******************************************************************************
+void				print_char(char c, int *len);
+void				print_str(char *str, int *len);
+void				print_dez_to_hexa(unsigned long dez_nbr, int *len,
+						t_bool caps);
+void				print_ptr(unsigned long ptr, int *len);
+void				print_nbr(long nbr, int *len);
 
 //******************************************************************************
 //			Output Functions

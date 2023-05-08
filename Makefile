@@ -14,9 +14,9 @@ SRC_FOLDER = ./src/
 LIB_FOLDER = ./lib/
 
 # ->Files
-LIBFT = $(LIB_FOLDER)/libft.a
+LIBFT_FT_PRINTF = $(LIB_FOLDER)/libft_ft_printf.a
 SRCS = \
-	$(SRC_FOLDER)push_swap.c \
+	$(SRC_FOLDER)main.c \
 	$(SRC_FOLDER)push.c \
 	$(SRC_FOLDER)swap.c \
 	$(SRC_FOLDER)rotate.c \
@@ -26,26 +26,29 @@ SRCS = \
 OBJS = $(SRCS:.c=.o)
 
 # TARGETS
-.PHONY: $(NAME) all clean fclean re god
+.PHONY: $(NAME) all clean fclean re god run
 
 all: $(NAME)
 
-$(NAME): $(LIBFT) $(OBJS)
+$(NAME): $(LIBFT_FT_PRINTF) $(OBJS)
 	$(CC) $(CFLAGS) $(OBJS) $(CLIBS) -o $(NAME)
 
-$(LIBFT):
+$(LIBFT_FT_PRINTF):
 	make -C $(LIB_FOLDER)
-	echo "\nLIBFT compiled!\n"
+	echo "\nlibft_ft_printf.a compiled!\n"
 
 clean:
 	$(RM) $(OBJS)
-	$(RM) $(LIBFT) 
+	$(RM) $(LIBFT_FT_PRINTF) 
 	make -C $(LIB_FOLDER) clean
 
 fclean: clean
 	$(RM) $(NAME)
 
 re: fclean all
+
+run: all
+	./$(NAME) 1 2 3 4 5 10 9 8 7 6
 
 god:
 	git status

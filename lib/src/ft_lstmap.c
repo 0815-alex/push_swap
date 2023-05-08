@@ -6,11 +6,11 @@
 /*   By: astein <astein@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 16:11:48 by astein            #+#    #+#             */
-/*   Updated: 2023/04/21 16:24:26 by astein           ###   ########.fr       */
+/*   Updated: 2023/05/08 23:30:34 by astein           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft.h"
+#include "../libft_ft_printf.h"
 
 /**
  * @brief	Iterates the list 'lst' and applies the function 'f' on the content
