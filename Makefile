@@ -26,7 +26,7 @@ SRCS = \
 OBJS = $(SRCS:.c=.o)
 
 # TARGETS
-.PHONY: $(NAME) all clean fclean re
+.PHONY: $(NAME) all clean fclean re god
 
 all: $(NAME)
 
