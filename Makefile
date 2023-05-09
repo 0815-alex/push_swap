@@ -4,7 +4,7 @@
 NAME = push_swap
 
 # Prints DEBUG Messages
-DEBUG = 0
+DEBUG = 1
 
 # Compiler options
 CC = cc
@@ -30,7 +30,7 @@ SRCS = \
 OBJS = $(SRCS:.c=.o)
 
 # TARGETS
-.PHONY: $(NAME) all clean fclean re god run
+.PHONY:	$(NAME) all clean fclean re god run
 
 all: $(NAME)
 
@@ -54,12 +54,11 @@ fclean: clean
 re: fclean all
 
 run: $(NAME)
-	./$(NAME) 1 2 3 4 9 8 7 6 66 -1 -2 -3 -4
-	make clean
+	./$(NAME) 1 2 3 4 5 6 7 8
 
 god:
 	git status
 	git add .
 	git status
-	git commit -m " ->Makefile Commit<- "
+	git commit -m " -> Makefile Commit<- "
 	git status

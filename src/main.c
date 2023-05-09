@@ -6,7 +6,7 @@
 /*   By: astein <astein@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 19:51:54 by astein            #+#    #+#             */
-/*   Updated: 2023/05/09 16:43:03 by astein           ###   ########.fr       */
+/*   Updated: 2023/05/09 22:13:44 by astein           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,14 @@
 
 static void	print_stack(t_stack *stack)
 {
+	if (!stack)
+		ft_printf("(null)");
 	while (stack)
 	{
 		ft_printf("%d<", stack->value);
 		stack = stack->next;
 	}
+	ft_printf("\n");
 }
 
 static t_stack	*create_stack(int argc, char **argv)
@@ -98,7 +101,9 @@ static t_bool	check_args(int argc, char **argv)
 int	main(int argc, char **argv)
 {
 	t_stack	*stack_a;
+	t_stack	*stack_b;
 
+	stack_b = NULL;
 	ft_debug_printf("\n---------\nDEBUG ON!\n---------\n\n");
 	if (check_args(argc, argv) == ft_true)
 	{
@@ -106,6 +111,21 @@ int	main(int argc, char **argv)
 		stack_a = create_stack(argc, argv);
 		if (!stack_a)
 			return (1);
+		ft_debug_printf("A>");
+		print_stack(stack_a);
+		
+		ra(&stack_a);
+		ft_debug_printf("A>");
+		print_stack(stack_a);
+		
+		rra(&stack_a);
+		ft_debug_printf("A>");
+		print_stack(stack_a);
+		rra(&stack_a);
+		ft_debug_printf("A>");
+		print_stack(stack_a);
+		ra(&stack_a);
+		ft_debug_printf("A>");
 		print_stack(stack_a);
 	}
 	else
