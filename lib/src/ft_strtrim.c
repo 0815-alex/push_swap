@@ -6,11 +6,11 @@
 /*   By: astein <astein@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 12:58:03 by astein            #+#    #+#             */
-/*   Updated: 2023/05/08 23:30:34 by astein           ###   ########.fr       */
+/*   Updated: 2023/05/09 15:38:12 by astein           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft_ft_printf.h"
+#include "../libft_printf.h"
 
 /**
  * @brief	Allocates and returns a copy of 's1' with the characters specified 

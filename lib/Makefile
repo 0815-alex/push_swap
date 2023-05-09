@@ -6,7 +6,7 @@ CFLAGS = -Wall -Werror -Wextra
 RM = rm -f
 
 # Library name and source files
-NAME = libft_ft_printf.a
+NAME = libft_printf.a
 SRC_FOLDER = ./src/
 SRCS = $(SRC_FOLDER)ft_isalpha.c \
 	$(SRC_FOLDER)ft_isdigit.c \
@@ -67,7 +67,7 @@ OBJS = $(SRCS:.c=.o)
 all: $(NAME) 
 
 $(NAME): $(OBJS)
-	ar -crs $@ $^
+	@ar -crs $@ $^
 
 clean:
 	$(RM) $(OBJS) $(OBJS_BONUS)

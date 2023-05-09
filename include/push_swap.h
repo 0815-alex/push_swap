@@ -6,7 +6,7 @@
 /*   By: astein <astein@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 19:54:25 by astein            #+#    #+#             */
-/*   Updated: 2023/05/09 01:12:39 by astein           ###   ########.fr       */
+/*   Updated: 2023/05/09 16:16:53 by astein           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,17 @@
 #  define DEBUG 0
 # endif
 
-# include "../lib/libft_ft_printf.h"
+# include "../lib/libft_printf.h"
 
 //******************************************************************************
 //			Typedefs
 //******************************************************************************
 
-void	ft_debug_printf(char *str, ...);
+void				ft_debug_printf(char *str, ...);
 
+typedef struct s_stack
+{
+	int				value;
+	struct s_stack	*next;
+}					t_stack;
 #endif

@@ -6,11 +6,11 @@
 /*   By: astein <astein@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 11:14:42 by astein            #+#    #+#             */
-/*   Updated: 2023/05/08 23:31:59 by astein           ###   ########.fr       */
+/*   Updated: 2023/05/09 15:38:12 by astein           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft_ft_printf.h"
+#include "../libft_printf.h"
 
 void	print_str(char *str, int *len)
 {
