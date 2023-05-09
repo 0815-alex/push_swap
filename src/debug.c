@@ -1,27 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   debug.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: astein <astein@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/08 19:54:25 by astein            #+#    #+#             */
-/*   Updated: 2023/05/09 01:12:39 by astein           ###   ########.fr       */
+/*   Created: 2023/05/09 00:44:25 by astein            #+#    #+#             */
+/*   Updated: 2023/05/09 01:25:30 by astein           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
-# ifndef DEBUG
-#  define DEBUG 0
-# endif
+#include "../include/push_swap.h"
 
-# include "../lib/libft_ft_printf.h"
+void	ft_debug_printf(char *str, ...)
+{
+	va_list	args;
+	int		len;
 
-//******************************************************************************
-//			Typedefs
-//******************************************************************************
-
-void	ft_debug_printf(char *str, ...);
-
-#endif
+	if (DEBUG == 1)
+	{
+		va_start(args, str);
+		len = 0;
+		while (*str)
+		{
+			if (*str == '%')
+			{
+				str++;
+				len += print_whatever(args, (char *)str);
+			}
+			else
+				print_char(*str, &len);
+			str++;
+		}
+		va_end(args);
+	}
+}

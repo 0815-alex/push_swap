@@ -20,7 +20,7 @@
  * @param	str		type identifier (%cspdiuxX)	
  * @return	int		length of printed string
  */
-static int	print_whatever(va_list args, char *str)
+int	print_whatever(va_list args, char *str)
 {
 	int	len;
 

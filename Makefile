@@ -3,10 +3,13 @@
 # Variables
 NAME = push_swap
 
+# Prints DEBUG Messages
+DEBUG = 1
+
 # Compiler options
 CC = cc
-CFLAGS = -Wall -Werror -Wextra 
-CLIBS = -L$(LIB_FOLDER) -lft
+CFLAGS = -Wall -Werror -Wextra -D DEBUG=$(DEBUG)
+CLIBS = -L$(LIB_FOLDER) -lft_ft_printf
 RM = rm -f
 
 # ->Folders
@@ -17,6 +20,7 @@ LIB_FOLDER = ./lib/
 LIBFT_FT_PRINTF = $(LIB_FOLDER)/libft_ft_printf.a
 SRCS = \
 	$(SRC_FOLDER)main.c \
+	$(SRC_FOLDER)debug.c \
 	$(SRC_FOLDER)push.c \
 	$(SRC_FOLDER)swap.c \
 	$(SRC_FOLDER)rotate.c \
@@ -31,7 +35,7 @@ OBJS = $(SRCS:.c=.o)
 all: $(NAME)
 
 $(NAME): $(LIBFT_FT_PRINTF) $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) $(CLIBS) -o $(NAME)
+	$(CC) $(CFLAGS) $(OBJS) $(CLIBS)  -o $(NAME)
 
 $(LIBFT_FT_PRINTF):
 	make -C $(LIB_FOLDER)
@@ -47,8 +51,8 @@ fclean: clean
 
 re: fclean all
 
-run: all
-	./$(NAME) 1 2 3 4 5 10 9 8 7 6
+run: $(NAME)
+	./$(NAME) 1 2 3 4 9 8 7 6
 
 god:
 	git status
