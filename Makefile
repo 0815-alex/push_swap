@@ -4,7 +4,7 @@
 NAME = push_swap
 
 # Prints DEBUG Messages
-DEBUG = 1
+DEBUG = 0
 
 # Compiler options
 CC = cc
@@ -61,7 +61,7 @@ clean:
 	@echo "$(RED)$(NAME): cleaned object files$(RESET)"
 
 fclean: clean
-	#@make --no-print-directory -C $(LIB_FOLDER) fclean
+	@make --no-print-directory -C $(LIB_FOLDER) fclean
 	@$(RM) $(NAME)
 	@echo "$(RED)$(NAME): cleaned program$(RESET)"
 
@@ -75,4 +75,4 @@ god:
 	git status
 
 r: re
-	./$(NAME) 1 2 3 -3 -2 -1
+	./$(NAME) 8 4 1 2 5

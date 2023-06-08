@@ -6,7 +6,7 @@
 /*   By: astein <astein@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 19:54:25 by astein            #+#    #+#             */
-/*   Updated: 2023/06/08 19:11:23 by astein           ###   ########.fr       */
+/*   Updated: 2023/06/08 19:47:10 by astein           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,16 @@ void				rra(t_stack **a);
 void				rrb(t_stack **b);
 void				rrr(t_stack **a, t_stack **b);
 
+
+
+
+void	print_stack(t_stack *stack);
+int		stack_height(t_stack *stack);
+
+
 //******************************************************************************
 //			SOLVERS -> radix.c
 //******************************************************************************
-void sort_radix(t_stack *stack_a, t_satck *stack_b);
+void				sort_radix(t_stack **stack_a, t_stack **stack_b);
 
 #endif

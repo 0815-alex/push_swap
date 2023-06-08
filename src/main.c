@@ -6,13 +6,26 @@
 /*   By: astein <astein@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 19:51:54 by astein            #+#    #+#             */
-/*   Updated: 2023/05/09 22:13:44 by astein           ###   ########.fr       */
+/*   Updated: 2023/06/08 21:06:29 by astein           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-static void	print_stack(t_stack *stack)
+int		stack_height(t_stack *stack)
+{
+	int height;
+
+	height = 0;
+	while(stack)
+	{
+		height++;
+		stack = stack->next;
+	}
+	return (height);
+}
+
+void	print_stack(t_stack *stack)
 {
 	if (!stack)
 		ft_printf("(null)");
@@ -154,13 +167,12 @@ static t_bool	check_args(int argc, char **argv)
 void		free_stack(t_stack *stack)
 {
 	t_stack *buf;
-
-	while (stack->next)
-	{
-		buf = stack->next;
-		free(stack);
-		stack = buf;
-	}
+		while (stack)
+		{
+			buf = stack->next;
+			free(stack);
+			stack = buf;
+		}
 	free(buf);
 }
 
@@ -179,14 +191,17 @@ int	main(int argc, char **argv)
 		stack_a = ini_stack_a(argc, argv);
 		if (!stack_a)
 			return (1);
-		dbg_printf(no_block, "A>");
-		print_stack(stack_a);
-		print_stack(stack_b);
+		// dbg_printf(no_block, "A>");
+		// print_stack(stack_a);
+		// dbg_printf(no_block, "B>");
+		// print_stack(stack_b);
 
-		sort_radix(stack_a, stack_b);
+		sort_radix(&stack_a, &stack_b);
 
-		print_stack(stack_a);
-		print_stack(stack_b);
+		// dbg_printf(no_block, "A>");
+		// print_stack(stack_a);
+		// dbg_printf(no_block, "B>");
+		// print_stack(stack_b);
 	
 		free_stack(stack_a);
 		free_stack(stack_b);
