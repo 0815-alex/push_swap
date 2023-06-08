@@ -6,7 +6,7 @@
 /*   By: astein <astein@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 12:58:03 by astein            #+#    #+#             */
-/*   Updated: 2023/05/09 15:38:12 by astein           ###   ########.fr       */
+/*   Updated: 2023/05/26 21:07:08 by astein           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ char	*ft_strtrim(char const *s1, char const *set)
 {
 	size_t	i;
 
+	if (!s1)
+		return (NULL);
 	if (!set)
 		return ((char *)s1);
 	while (*s1 && ft_strchr(set, *s1))

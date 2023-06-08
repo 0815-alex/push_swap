@@ -1,11 +1,11 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_btoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: astein <astein@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/12 14:04:06 by astein            #+#    #+#             */
+/*   Created: 2023/04/12 13:39:45 by astein            #+#    #+#             */
 /*   Updated: 2023/05/09 15:38:12 by astein           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -13,19 +13,32 @@
 #include "../libft_printf.h"
 
 /**
- * @brief	This function calculates the length of a string and returns it
+ * @brief	converts the boolean 'b' into a readable string defined by the
+ * 			parameter 'flg'
+ *
+ * 			FLG:
+ * 					0 = TRUE, FALSE
+ * 					1 = ON, OFF
  * 
- * @param	s
- * @return	size_t 
+ * @param	b		boolean to be converted
+ * @param	flg		parameter defining the resulting string
+ * @return	char*	result of the conversion
  */
-size_t	ft_strlen(const char *s)
+char	*ft_btoa(t_bool b, int flg)
 {
-	size_t	i;
-
-	i = 0;
-	if (!s)
-		return (0);
-	while (s[i])
-		i++;
-	return (i);
+	if (b)
+	{
+		if (flg == 0)
+			return ("TRUE");
+		else if (flg == 1)
+			return ("ON");
+	}
+	else
+	{
+		if (flg == 0)
+			return ("FALSE");
+		else if (flg == 1)
+			return ("OFF");
+	}
+	return (NULL);
 }

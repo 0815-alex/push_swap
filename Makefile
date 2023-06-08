@@ -8,57 +8,71 @@ DEBUG = 1
 
 # Compiler options
 CC = cc
-CFLAGS = -Wall -Werror -Wextra -D DEBUG=$(DEBUG)
+CFLAGS = -D DEBUG=$(DEBUG) -g -Wall -Werror -Wextra -fsanitize=address -fsanitize-address-use-after-scope
 CLIBS = -L$(LIB_FOLDER) -lft_printf
+CINCLUDES  = -I$(INCLUDE_FOLDER) 
 RM = rm -f
+
+# Color codes
+GREEN = \033[0;32m
+RED = \033[0;31m
+ORANGE = \033[0;33m
+RESET = \033[0m
 
 # ->Folders
 SRC_FOLDER = ./src/
+OBJS_FOLDER = ./obj/
 LIB_FOLDER = ./lib/
+INCLUDE_FOLDER = ./include/
 
 # ->Files
 LIBFT_FT_PRINTF = $(LIB_FOLDER)/libft_printf.a
-SRCS = \
-	$(SRC_FOLDER)main.c \
-	$(SRC_FOLDER)debug.c \
-	$(SRC_FOLDER)push.c \
-	$(SRC_FOLDER)swap.c \
-	$(SRC_FOLDER)rotate.c \
-	$(SRC_FOLDER)reverse_rotate.c \
+SRCS = $(addprefix $(SRC_FOLDER), \
+	main.c \
+	debug.c \
+	push.c \
+	swap.c \
+	rotate.c \
+	reverse_rotate.c)
 
 # Object files
-OBJS = $(SRCS:.c=.o)
+OBJS = $(SRCS:$(SRC_FOLDER)%.c=$(OBJS_FOLDER)%.o)
 
 # TARGETS
 .PHONY:	$(NAME) all clean fclean re god run
 
 all: $(NAME)
 
-$(NAME): $(LIBFT_FT_PRINTF) $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) $(CLIBS)  -o $(NAME)
+$(NAME): $(OBJS) $(LIBFT_PRINTF)
+	@$(CC) $(OBJS) $(CFLAGS) -D DEBUG=$(DEBUG) $(CLIBS) $(CINCLUDES) -lft_printf -o $(NAME)
+	@echo "$(GREEN)\n$(NAME): created\n$(RESET)"
 
-$(LIBFT_FT_PRINTF):
-	@echo "\ncompiling libft_printf.a...\n"
-	@make -C $(LIB_FOLDER)
-	@echo "\nlibft_printf.a compiled!\n"
+$(OBJS_FOLDER)%.o: $(SRC_FOLDER)%.c
+	@mkdir -p $(@D)
+	@echo -n "."
+	@$(CC) $(CFLAGS) -c $< -o $@
+
+$(LIBFT_PRINTF):
+	@echo "$(ORANGE)\ncompiling: $(LIBFT_PRINTF)\n$(RESET)"
+	@$(MAKE) --no-print-directory -C $(LIB_FOLDER) DEBUG=$(DEBUG)
 
 clean:
-	$(RM) $(OBJS)
-	$(RM) $(LIBFT_FT_PRINTF) 
-	make -C $(LIB_FOLDER) clean
+	@$(RM) $(OBJS)
+	@echo "$(RED)$(NAME): cleaned object files$(RESET)"
 
 fclean: clean
-	$(RM) $(NAME)
-	make -C $(LIB_FOLDER) fclean
+	@make --no-print-directory -C $(LIB_FOLDER) fclean
+	@$(RM) $(NAME)
+	@echo "$(RED)$(NAME): cleaned program$(RESET)"
 
 re: fclean all
-
-run: $(NAME)
-	./$(NAME) 1 2 3 4 5 6 7 8
 
 god:
 	git status
 	git add .
 	git status
-	git commit -m " -> Makefile Commit<- "
+	git commit -m " -> Makefile Commit <- "
 	git status
+
+run: $(NAME)
+	./$(NAME) 1 2 3 4 5 6 7 8

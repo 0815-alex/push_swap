@@ -1,31 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_chr2str.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: astein <astein@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/12 14:04:06 by astein            #+#    #+#             */
+/*   Created: 2023/04/13 16:32:33 by astein            #+#    #+#             */
 /*   Updated: 2023/05/09 15:38:12 by astein           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft_printf.h"
 
-/**
- * @brief	This function calculates the length of a string and returns it
- * 
- * @param	s
- * @return	size_t 
- */
-size_t	ft_strlen(const char *s)
+char	*ft_chr2str(char c)
 {
-	size_t	i;
+	char	*buf;
 
-	i = 0;
-	if (!s)
-		return (0);
-	while (s[i])
-		i++;
-	return (i);
+	buf = ft_calloc(2, sizeof(char));
+	buf[0] = c;
+	return (buf);
 }

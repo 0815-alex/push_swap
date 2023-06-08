@@ -13,6 +13,27 @@
 #include "../libft_printf.h"
 
 /**
+ * @brief	I use this function as a function pointer parameter for ft_lstclear
+ * 
+ * @param	nothing will be the pointer to content of a linked list.
+ */
+void	null_ptr(void *nothing)
+{
+	(void)nothing;
+}
+
+/**
+ * @brief	I use this function as a function pointer parameter for ft_lstclear
+ * 			to free each nodes content
+ * 
+ * @param node	will be the pointer to content of a linked list.
+ */
+void	free_content(void *node)
+{
+	free(node);
+}
+
+/**
  * @brief	Deletes and frees the given node and every successor of that node,
  * 			using the function 'del' and 'ft_lstdelone'.
  * 			Finally, the pointer to the list is set to NULL.

@@ -6,7 +6,7 @@
 /*   By: astein <astein@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 20:40:54 by astein            #+#    #+#             */
-/*   Updated: 2023/05/09 15:38:12 by astein           ###   ########.fr       */
+/*   Updated: 2023/05/21 01:49:50 by astein           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,5 +45,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 		sub[0] = 0;
 	else
 		ft_strlcpy(sub, &s[start], cpy_len + 1);
+	if (s_len > start && !sub)
+		free(sub);
 	return (sub);
 }

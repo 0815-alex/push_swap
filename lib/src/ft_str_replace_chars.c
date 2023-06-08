@@ -1,11 +1,11 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_str_replace_chr.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: astein <astein@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/12 14:04:06 by astein            #+#    #+#             */
+/*   Created: 2023/04/13 16:32:33 by astein            #+#    #+#             */
 /*   Updated: 2023/05/09 15:38:12 by astein           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -13,19 +13,18 @@
 #include "../libft_printf.h"
 
 /**
- * @brief	This function calculates the length of a string and returns it
+ * @brief	replaces all char 'old' in string 'str' with char 'new'
  * 
- * @param	s
- * @return	size_t 
+ * @param str	string to replaces chars in
+ * @param old	char to be replaced
+ * @param new	char to be replaced with
  */
-size_t	ft_strlen(const char *s)
+void	ft_str_replace_chr(char *str, char old, char new)
 {
-	size_t	i;
-
-	i = 0;
-	if (!s)
-		return (0);
-	while (s[i])
-		i++;
-	return (i);
+	while (*str != '\0')
+	{
+		if (str[0] == old)
+			*str = new;
+		str++;
+	}
 }

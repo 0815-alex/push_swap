@@ -6,7 +6,7 @@
 /*   By: astein <astein@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 13:24:38 by astein            #+#    #+#             */
-/*   Updated: 2023/05/09 15:38:12 by astein           ###   ########.fr       */
+/*   Updated: 2023/05/21 01:45:22 by astein           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,10 @@ int	wrdlen(const char *s, char c)
  * @brief	Allocates and returns an array of strings obtained by splitting 's'
  * 			using the character 'c' as a delimiter.
  * 			The array ends with a NULL pointer.
+ *          int[3] arr stores:
+ *              0 = wordcount
+ *              1 = cur_word_length
+ *              2 = index for looping
  * 
  * @param	s	The string to be split.
  * @param 	c 	The delimiter character.
@@ -67,28 +71,28 @@ int	wrdlen(const char *s, char c)
 char	**ft_split(char const *s, char c)
 {
 	char	**res;
-	int		w;
-	int		i;
-	int		len;
+	int		arr[3];
 
 	if (!s)
 		return (NULL);
-	w = cnt_wrds(s, c);
-	res = malloc(sizeof(char *) * (w + 1));
-	if (!res)
-		return (NULL);
-	i = 0;
-	while (i < w)
+	arr[0] = cnt_wrds(s, c);
+	res = malloc(sizeof(char *) * (arr[0] + 1));
+	arr[2] = -1;
+	while (++arr[2] < arr[0])
 	{
 		while (*s == c && *s != '\0')
 			s++;
-		len = wrdlen(s, c);
-		res[i] = ft_substr(s, 0, len);
-		if (!res[i])
+		arr[1] = wrdlen(s, c);
+		res[arr[2]] = ft_substr(s, 0, arr[1]);
+		if (!res[arr[2]])
+		{
+			while (arr[2] > 0)
+				free(res[--arr[2]]);
+			free(res);
 			return (NULL);
-		s += len;
-		i++;
+		}
+		s += arr[1];
 	}
-	res[w] = NULL;
+	res[arr[0]] = NULL;
 	return (res);
 }
