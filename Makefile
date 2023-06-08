@@ -9,7 +9,7 @@ DEBUG = 1
 # Compiler options
 CC = cc
 CFLAGS = -D DEBUG=$(DEBUG) -g -Wall -Werror -Wextra -fsanitize=address -fsanitize-address-use-after-scope
-CLIBS = -L$(LIB_FOLDER) -lft_printf
+CLIBS = -L$(LIB_FOLDER) -lft_printf -lm
 CINCLUDES  = -I$(INCLUDE_FOLDER) 
 RM = rm -f
 
@@ -26,25 +26,25 @@ LIB_FOLDER = ./lib/
 INCLUDE_FOLDER = ./include/
 
 # ->Files
-LIBFT_FT_PRINTF = $(LIB_FOLDER)/libft_printf.a
+LIBFT_PRINTF = $(LIB_FOLDER)/libft_printf.a
 SRCS = $(addprefix $(SRC_FOLDER), \
 	main.c \
-	debug.c \
 	push.c \
 	swap.c \
 	rotate.c \
-	reverse_rotate.c)
+	reverse_rotate.c \
+	sort_radix.c)
 
 # Object files
 OBJS = $(SRCS:$(SRC_FOLDER)%.c=$(OBJS_FOLDER)%.o)
 
 # TARGETS
-.PHONY:	$(NAME) all clean fclean re god run
+.PHONY:	$(NAME) all clean fclean re god r
 
 all: $(NAME)
 
 $(NAME): $(OBJS) $(LIBFT_PRINTF)
-	@$(CC) $(OBJS) $(CFLAGS) -D DEBUG=$(DEBUG) $(CLIBS) $(CINCLUDES) -lft_printf -o $(NAME)
+	@$(CC) $(OBJS) $(CFLAGS) -D DEBUG=$(DEBUG) $(CLIBS) $(CINCLUDES) -o $(NAME)
 	@echo "$(GREEN)\n$(NAME): created\n$(RESET)"
 
 $(OBJS_FOLDER)%.o: $(SRC_FOLDER)%.c
@@ -61,7 +61,7 @@ clean:
 	@echo "$(RED)$(NAME): cleaned object files$(RESET)"
 
 fclean: clean
-	@make --no-print-directory -C $(LIB_FOLDER) fclean
+	#@make --no-print-directory -C $(LIB_FOLDER) fclean
 	@$(RM) $(NAME)
 	@echo "$(RED)$(NAME): cleaned program$(RESET)"
 
@@ -74,5 +74,5 @@ god:
 	git commit -m " -> Makefile Commit <- "
 	git status
 
-run: $(NAME)
-	./$(NAME) 1 2 3 4 5 6 7 8
+r: re
+	./$(NAME) 1 2 3 -3 -2 -1

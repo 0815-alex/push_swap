@@ -23,6 +23,7 @@
 # include <stdlib.h>
 # include <string.h>
 # include <unistd.h>
+# include <limits.h>
 
 //******************************************************************************
 // BUFFER SIZE FOR GET NEXT LINE
@@ -68,7 +69,7 @@ typedef enum e_dbg_flag
 	start_block = 1,
 	end_block = 2,
 	success_block = 3,
-	no_lb = 4
+	no_lb_block = 4
 }					t_dbg_flag;
 
 //******************************************************************************

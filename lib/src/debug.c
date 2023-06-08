@@ -22,6 +22,8 @@
  * 
  * 			the current indent level is stored in the static var 'cur_indent'.
  * 
+ * 			NOTE: modified for push_swap: on error no tabs! (first if)
+ * 
  * @param dbg_flg	defining the type of message which should be printed
  */
 static void	print_indent_level(t_dbg_flag dbg_flg)
@@ -29,7 +31,7 @@ static void	print_indent_level(t_dbg_flag dbg_flg)
 	static int	cur_indent;
 	int			tabs;
 
-	if (dbg_flg == no_lb)
+	if (dbg_flg == no_lb_block || dbg_flg == err_block)
 		return ;
 	tabs = 0;
 	if (dbg_flg == end_block && cur_indent > 0)
@@ -89,11 +91,10 @@ void	dbg_printf(t_dbg_flag dbg_flg, char *str, ...)
 			str++;
 		}
 		va_end(args);
-		if (dbg_flg != no_lb)
+		if (dbg_flg != no_lb_block)
 			ft_putstr_fd("\n", 1);
 		if (dbg_flg != err_block && dbg_flg != success_block)
 			return ;
-		perror("\nSystem error msg");
 		exit (1);
 	}
 }

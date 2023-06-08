@@ -6,15 +6,12 @@
 /*   By: astein <astein@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 19:54:25 by astein            #+#    #+#             */
-/*   Updated: 2023/05/09 21:34:09 by astein           ###   ########.fr       */
+/*   Updated: 2023/06/08 19:11:23 by astein           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
-# ifndef DEBUG
-#  define DEBUG 0
-# endif
 
 # include "../lib/libft_printf.h"
 
@@ -24,6 +21,7 @@
 typedef struct s_stack
 {
 	int				value;
+	long			index;
 	struct s_stack	*next;
 }					t_stack;
 
@@ -55,5 +53,10 @@ void				rr(t_stack **a, t_stack **b);
 void				rra(t_stack **a);
 void				rrb(t_stack **b);
 void				rrr(t_stack **a, t_stack **b);
+
+//******************************************************************************
+//			SOLVERS -> radix.c
+//******************************************************************************
+void sort_radix(t_stack *stack_a, t_satck *stack_b);
 
 #endif
