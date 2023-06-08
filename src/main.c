@@ -6,7 +6,7 @@
 /*   By: astein <astein@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 19:51:54 by astein            #+#    #+#             */
-/*   Updated: 2023/06/08 21:06:29 by astein           ###   ########.fr       */
+/*   Updated: 2023/06/09 00:19:40 by astein           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -199,7 +199,7 @@ int	main(int argc, char **argv)
 		sort_radix(&stack_a, &stack_b);
 
 		// dbg_printf(no_block, "A>");
-		// print_stack(stack_a);
+		print_stack(stack_a);
 		// dbg_printf(no_block, "B>");
 		// print_stack(stack_b);
 	
