@@ -6,7 +6,7 @@
 /*   By: astein <astein@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 19:45:46 by astein            #+#    #+#             */
-/*   Updated: 2023/05/09 20:02:04 by astein           ###   ########.fr       */
+/*   Updated: 2023/06/09 14:35:30 by astein           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,21 +24,24 @@ static void	swap(t_stack **stack)
 	*stack = buffer_node;
 }
 
-void	sa(t_stack **a)
+long	sa(t_stack **a)
 {
 	swap(a);
 	ft_printf("sa\n");
+	return (1);
 }
 
-void	sb(t_stack **b)
+long	sb(t_stack **b)
 {
 	swap(b);
 	ft_printf("sb\n");
+	return (1);
 }
 
-void	ss(t_stack **a, t_stack **b)
+long	ss(t_stack **a, t_stack **b)
 {
 	swap(a);
 	swap(b);
 	ft_printf("ss\n");
+	return (1);
 }

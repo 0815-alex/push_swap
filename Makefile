@@ -4,7 +4,7 @@
 NAME = push_swap
 
 # Prints DEBUG Messages
-DEBUG = 0
+DEBUG = 1
 
 # Compiler options
 CC = cc
@@ -33,6 +33,9 @@ SRCS = $(addprefix $(SRC_FOLDER), \
 	swap.c \
 	rotate.c \
 	reverse_rotate.c \
+	stack.c \
+	stack_utils.c \
+	choose_solver.c \
 	sort_radix.c)
 
 # Object files
