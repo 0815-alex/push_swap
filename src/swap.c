@@ -6,7 +6,7 @@
 /*   By: astein <astein@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 19:45:46 by astein            #+#    #+#             */
-/*   Updated: 2023/06/09 14:35:30 by astein           ###   ########.fr       */
+/*   Updated: 2023/06/09 16:29:27 by astein           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,32 +16,35 @@ static void	swap(t_stack **stack)
 {
 	t_stack	*buffer_node;
 
-	if (!*stack || !(*stack)->next)
+	if (!*stack || !(*stack)->n)
 		return ;
-	buffer_node = (*stack)->next;
-	(*stack)->next = buffer_node->next;
-	buffer_node->next = *stack;
+	buffer_node = (*stack)->n;
+	(*stack)->n = buffer_node->n;
+	buffer_node->n = *stack;
 	*stack = buffer_node;
 }
 
-long	sa(t_stack **a)
+long	sa(t_stack **a, t_bool print)
 {
 	swap(a);
-	ft_printf("sa\n");
+	if (print)
+		ft_printf("sa\n");
 	return (1);
 }
 
-long	sb(t_stack **b)
+long	sb(t_stack **b, t_bool print)
 {
 	swap(b);
-	ft_printf("sb\n");
+	if (print)
+		ft_printf("sb\n");
 	return (1);
 }
 
-long	ss(t_stack **a, t_stack **b)
+long	ss(t_stack **a, t_stack **b, t_bool print)
 {
 	swap(a);
 	swap(b);
-	ft_printf("ss\n");
+	if (print)
+		ft_printf("ss\n");
 	return (1);
 }

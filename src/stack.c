@@ -6,7 +6,7 @@
 /*   By: astein <astein@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 14:10:27 by astein            #+#    #+#             */
-/*   Updated: 2023/06/09 14:42:32 by astein           ###   ########.fr       */
+/*   Updated: 2023/06/09 16:29:27 by astein           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,12 @@ static void set_indices(t_stack *stack)
 			min_value = buf;
 		if (buf->value > max_value->value)
 			max_value = buf;
-		buf = buf->next;
+		buf = buf->n;
 	}
 	set_index(min_value, 0);
 	cur_i = 1;
 	buf = stack;
-	while (buf->next)
+	while (buf->n)
 	{
 		buf2 = stack;
 		cur_value = max_value;
@@ -43,11 +43,11 @@ static void set_indices(t_stack *stack)
 		{
 			if (!buf2->index_set && buf2->value < cur_value->value)
 				cur_value = buf2;
-			buf2 = buf2->next;
+			buf2 = buf2->n;
 		}
 		set_index(cur_value, cur_i);
 		cur_i++;
-		buf = buf->next;
+		buf = buf->n;
 	}
 }
 
@@ -66,16 +66,16 @@ t_stack	*ini_stack_a(int argc, char **argv)
 	i = 2;
 	while (i < argc)
 	{
-		last_node->next = malloc(sizeof(t_stack));
-		if (!last_node->next)
+		last_node->n = malloc(sizeof(t_stack));
+		if (!last_node->n)
 			return (NULL);
-		last_node = last_node->next;
+		last_node = last_node->n;
 		last_node->value = ft_atoi(argv[i]);
 		set_index(last_node, -1);
 		i++;
 	}
 	dbg_printf(no_block, "");
-	last_node->next = NULL;
+	last_node->n = NULL;
 	set_indices(new_stack);
 	return (new_stack);
 }
@@ -86,10 +86,16 @@ void	free_stack(t_stack *stack)
 
 	while (stack)
 	{
-		buf = stack->next;
+		buf = stack->n;
 		free(stack);
 		stack = buf;
 	}
 	free(buf);
 }
 
+void	free_stacks(t_stacks *stacks)
+{
+	free_stack(stacks->a);
+	free_stack(stacks->b);
+	free(stacks);
+}

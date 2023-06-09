@@ -6,7 +6,7 @@
 /*   By: astein <astein@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 19:51:54 by astein            #+#    #+#             */
-/*   Updated: 2023/06/09 14:43:34 by astein           ###   ########.fr       */
+/*   Updated: 2023/06/09 16:09:52 by astein           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,19 +54,21 @@ static t_bool	check_args(int argc, char **argv)
 
 int	main(int argc, char **argv)
 {
-	t_stack	*stack_a;
-	t_stack	*stack_b;
+	t_stacks	*stacks;
 
-	stack_b = NULL;
+	stacks = malloc(sizeof(t_stacks));
+	if (!stacks)
+		return (1);
+	stacks->b = NULL;
 	if (check_args(argc, argv) == ft_true)
 	{
-		stack_a = ini_stack_a(argc, argv);
-		if (!stack_a)
+		stacks->a = ini_stack_a(argc, argv);
+		if (!stacks->a)
 			return (1);
-		dbg_printf(no_block, "stack height: %i", stack_height(stack_a));
-		choose_solver(&stack_a, &stack_b);
-		free_stack(stack_a);
-		free_stack(stack_b);
+		dbg_printf(no_block, "stack height: %i", stack_height(stacks->a));
+		if (!is_sorted(stacks->a))
+			choose_solver(stacks);
+		free_stacks(stacks);
 	}
 	else
 		ft_printf("Error\n");

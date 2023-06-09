@@ -6,7 +6,7 @@
 /*   By: astein <astein@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 19:45:44 by astein            #+#    #+#             */
-/*   Updated: 2023/06/09 14:35:11 by astein           ###   ########.fr       */
+/*   Updated: 2023/06/09 16:29:27 by astein           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,39 +14,42 @@
 
 static void	rotate(t_stack **stack)
 {
- t_stack	*buffer_node;
+t_stack	*buffer_node;
 
 	if (!(*stack))
 		return ;
-	if ((*stack)->next)
-	{                                   //START -> END
-		buffer_node = *stack;           //safe the start
-		while ((*stack)->next)          
-			*stack = (*stack)->next;    //find the end
-		(*stack)->next = buffer_node;   //link start to end (end next -> start)
-		*stack = buffer_node->next;     //set the start to old starts next
-		buffer_node->next = NULL;       //set old starts bext to null
+	if ((*stack)->n)
+	{
+		buffer_node = *stack;
+		while ((*stack)->n)          
+			*stack = (*stack)->n;    //find the end
+		(*stack)->n = buffer_node;   //link start to end (end next -> start)
+		*stack = buffer_node->n;     //set the start to old starts next
+		buffer_node->n = NULL;       //set old starts bext to null
 	}
 }
 
-long	ra(t_stack **a)
+long	ra(t_stack **a, t_bool print)
 {
 	rotate(a);
-	ft_printf("ra\n");
+	if (print)
+		ft_printf("ra\n");
 	return (1);
 }
 
-long	rb(t_stack **b)
+long	rb(t_stack **b, t_bool print)
 {
 	rotate(b);
-	ft_printf("rb\n");
+	if (print)
+		ft_printf("rb\n");
 	return (1);
 }
 
-long	rr(t_stack **a, t_stack **b)
+long	rr(t_stack **a, t_stack **b, t_bool print)
 {
 	rotate(a);
 	rotate(b);
-	ft_printf("rr\n");
+	if (print)
+		ft_printf("rr\n");
 	return (1);
 }

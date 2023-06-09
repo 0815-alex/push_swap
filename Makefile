@@ -4,7 +4,7 @@
 NAME = push_swap
 
 # Prints DEBUG Messages
-DEBUG = 1
+DEBUG = 0
 
 # Compiler options
 CC = cc
@@ -36,7 +36,8 @@ SRCS = $(addprefix $(SRC_FOLDER), \
 	stack.c \
 	stack_utils.c \
 	choose_solver.c \
-	sort_radix.c)
+	sort_radix.c \
+	sort_small.c)
 
 # Object files
 OBJS = $(SRCS:$(SRC_FOLDER)%.c=$(OBJS_FOLDER)%.o)
