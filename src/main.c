@@ -6,11 +6,19 @@
 /*   By: astein <astein@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 19:51:54 by astein            #+#    #+#             */
-/*   Updated: 2023/06/09 16:09:52 by astein           ###   ########.fr       */
+/*   Updated: 2023/06/09 23:09:03 by astein           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
+
+void	dbg_end(t_stacks *stacks)
+{
+	print_stack(stacks->a);
+	print_stack(stacks->b);
+	exit(0);
+}
+
 
 /**
  *    v = values

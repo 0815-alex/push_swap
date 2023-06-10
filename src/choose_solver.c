@@ -6,7 +6,7 @@
 /*   By: astein <astein@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 13:30:03 by astein            #+#    #+#             */
-/*   Updated: 2023/06/09 20:48:19 by astein           ###   ########.fr       */
+/*   Updated: 2023/06/10 01:23:21 by astein           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ static t_bool	check_small_numbers(t_stacks *stacks)
 		sort_three(stacks);
 	// else if (amount_of_numbers == 4)
 	// 	sort_four(stacks);
-	// else if (amount_of_numbers == 5)
-	// 	sort_five(stacks);
+	else if (amount_of_numbers == 5)
+		sort_five(stacks);
 	else
 		is_small = ft_false;
 	return (is_small);

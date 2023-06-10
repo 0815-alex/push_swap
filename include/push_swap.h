@@ -6,7 +6,7 @@
 /*   By: astein <astein@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 19:54:25 by astein            #+#    #+#             */
-/*   Updated: 2023/06/09 17:06:04 by astein           ###   ########.fr       */
+/*   Updated: 2023/06/10 00:29:07 by astein           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,5 +75,8 @@ void				sort_two(t_stacks	*stacks);
 void				sort_three(t_stacks	*stacks);
 void				sort_four(t_stacks	*stacks);
 void				sort_five(t_stacks	*stacks);
+
+void	dbg_end(t_stacks *stacks);
+void	smart_rotate2sort(t_stack **stack);
 
 #endif

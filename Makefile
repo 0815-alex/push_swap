@@ -65,7 +65,7 @@ clean:
 	@echo "$(RED)$(NAME): cleaned object files$(RESET)"
 
 fclean: clean
-	@make --no-print-directory -C $(LIB_FOLDER) fclean
+#	@make --no-print-directory -C $(LIB_FOLDER) fclean
 	@$(RM) $(NAME)
 	@echo "$(RED)$(NAME): cleaned program$(RESET)"
 

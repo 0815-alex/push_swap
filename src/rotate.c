@@ -6,7 +6,7 @@
 /*   By: astein <astein@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 19:45:44 by astein            #+#    #+#             */
-/*   Updated: 2023/06/09 16:29:27 by astein           ###   ########.fr       */
+/*   Updated: 2023/06/10 03:22:35 by astein           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,4 +52,34 @@ long	rr(t_stack **a, t_stack **b, t_bool print)
 	if (print)
 		ft_printf("rr\n");
 	return (1);
+}
+
+void	smart_rotate2sort(t_stack **stack)
+{
+	t_stack	*buf1;
+	int		count[2];
+
+	if (!is_sorted(*stack))
+	{
+		count[0] = 0;
+		count[1] = 0;
+		buf1 = cpy_stack(stack);
+		while (!is_sorted(buf1))
+				count[0] += ra(&buf1, ft_false);
+		free_stack(buf1);
+		buf1 = cpy_stack(stack);
+		while (!is_sorted(buf1))
+			count[1] += rra(&buf1, ft_false);
+		free_stack(buf1);
+		if (count[0] < count[1])
+		{
+			while (!is_sorted(*stack))
+				ra(stack, ft_true);
+		}
+		else
+		{
+			while (!is_sorted(*stack))
+				rra(stack, ft_true);
+		}
+	}
 }
