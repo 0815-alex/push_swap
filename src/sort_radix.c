@@ -6,7 +6,7 @@
 /*   By: astein <astein@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 19:09:46 by astein            #+#    #+#             */
-/*   Updated: 2023/06/09 16:29:13 by astein           ###   ########.fr       */
+/*   Updated: 2023/06/12 20:07:41 by astein           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ static void	sort_by_bit(t_stacks *stacks, int bit, long *count, t_bool print)
 	while (i < h)
 	{
 		if (((stacks->a->i >> bit) & 1) == 0)
-			*count += pb(&stacks->a, &stacks->b, print);
+			*count += pb(stacks, print);
 		else
-			*count += ra(&stacks->a, print);
+			*count += ra(stacks, print);
 		i++;
 	}
 }
@@ -32,7 +32,7 @@ static void	sort_by_bit(t_stacks *stacks, int bit, long *count, t_bool print)
 static void	merge_to_a(t_stacks *stacks, long *count, t_bool print)
 {
 	while (stacks->b)
-		*count += pa(&stacks->a, &stacks->b, print);
+		*count += pa(stacks, print);
 }
 
 // https://medium.com/nerd-for-tech/push-swap-tutorial-fa746e6aba1e

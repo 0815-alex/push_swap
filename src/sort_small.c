@@ -6,7 +6,7 @@
 /*   By: astein <astein@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 16:02:46 by astein            #+#    #+#             */
-/*   Updated: 2023/06/10 04:25:57 by astein           ###   ########.fr       */
+/*   Updated: 2024/02/26 21:55:45 by astein           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,174 +14,91 @@
 
 void	sort_two(t_stacks	*stacks)
 {
-	ra(&stacks->a, ft_true);
+	if (!is_sorted(stacks->a))
+		ra(stacks, ft_true);
 }
 
-void	sort_three(t_stacks	*s)
+long	sort_three(t_stacks	*s, t_bool print)
 {
-	int		a;
-	int		b;
-	int		c;
+	int		buf[3];
+	long	count_actions;
 
-	a = s->a->i;
-	b = s->a->n->i;
-	c = s->a->n->n->i;
-	if (a > b && b < c && c > a)
-		sa(&s->a, ft_true);
-	else if (a > b && b < c && c < a)
-		ra(&s->a, ft_true);
-	else if (a < b && b > c && c < a)
-		rra(&s->a, ft_true);
-	else if (a > b && b > c && c < a)
+	count_actions = 0;
+	buf[0] = s->a->i;
+	buf[1] = s->a->n->i;
+	buf[2] = s->a->n->n->i;
+	if (buf[0] > buf[1] && buf[1] < buf[2] && buf[2] > buf[0])
+		count_actions += sa(s, print);
+	else if (buf[0] > buf[1] && buf[1] < buf[2] && buf[2] < buf[0])
+		count_actions += ra(s, print);
+	else if (buf[0] < buf[1] && buf[1] > buf[2] && buf[2] < buf[0])
+		count_actions += rra(s, print);
+	else if (buf[0] > buf[1] && buf[1] > buf[2] && buf[2] < buf[0])
 	{
-		sa(&s->a, ft_true);
-		rra(&s->a, ft_true);
+		count_actions += sa(s, print);
+		count_actions += rra(s, print);
 	}
-	else if (a < b && b > c && c > a)
+	else if (buf[0] < buf[1] && buf[1] > buf[2] && buf[2] > buf[0])
 	{
-		sa(&s->a, ft_true);
-		ra(&s->a, ft_true);
+		count_actions += sa(s, print);
+		count_actions += ra(s, print);
 	}
+	return (count_actions);
 }
 
-// void	sort_five(t_stacks	*stacks)
-// {
-// 	unsigned int	a;
-// 	unsigned int	b;
-	
-// 	pb(&stacks->a, &stacks->b, ft_true);
-// 	pb(&stacks->a, &stacks->b, ft_true);
-// 	sort_three(stacks);
-// 	if (!is_sorted(stacks->b))
-// 		rb(&stacks->b, ft_true);
-// 	a = stacks->b->i;
-// 	b = stacks->b->n->i;
-// 	if (a == 0)
-// 		pa(&stacks->a, &stacks->b, ft_true);
-// 	else if (b == 4)
-// 	{
-// 		rb(&stacks->b, ft_true);
-// 		pa(&stacks->a, &stacks->b, ft_true);
-// 	}
-// 	else
-// 	{
-// 		ra(&stacks->a, ft_true);
-// 		pa(&stacks->a, &stacks->b, ft_true);
-// 	}
-// 	smart_rotate2sort(&stacks->a);
-// 	dbg_end(stacks);
-// }
-
-//12 allowed
-void	sort_five(t_stacks	*stacks)
+/**
+ * @brief	checks if ra or rra is more efficient to bring the element with
+ * 			the index i to the top.
+ * 
+ * 			NOTE:
+ * 					- only made for stack heights 4 and 5
+ * 					- only made for stack a
+ * 
+ * @param stack	the stack
+ * @param i 	the index that should be brought on top
+ */
+static long	push_to_top(t_stacks *stacks, unsigned int i, t_bool print)
 {
-	unsigned int	a;
-	unsigned int	b;
+	long	count_actions;
 
-	pb(&stacks->a, &stacks->b, ft_true);
-	pb(&stacks->a, &stacks->b, ft_true);
-	sort_three(stacks);
-	if (!is_sorted(stacks->b))
-		rb(&stacks->b, ft_true);
-	a = stacks->b->i;
-	b = stacks->b->n->i;
-	if (a != 0)
-		rb(&stacks->b, ft_true);
+	count_actions = 0;
+	if (stacks->a->i == i || stacks->a->n->i == i || stacks->a->n->n->i == i)
+	{
+		while (stacks->a->i != i)
+			count_actions += ra(stacks, print);
+	}
 	else
-		pa(&stacks->a, &stacks->b, ft_true);
-	if (a == 3 && b == 4)	
-		pa(&stacks->a, &stacks->b, ft_true);
-	else if (a == 2 && b == 4)
 	{
-		pa(&stacks->a, &stacks->b, ft_true);
-		rra(&stacks->a, ft_true);
+		while (stacks->a->i != i)
+			count_actions += rra(stacks, print);
 	}
-	else if (a == 2 && b == 3)
-	{
-		rra(&stacks->a, ft_true);
-		pa(&stacks->a, &stacks->b, ft_true);
-	}
-	else if (a == 1 && b == 4)
-	{
-		pa(&stacks->a, &stacks->b, ft_true);
-		ra(&stacks->a, ft_true);
-		ra(&stacks->a, ft_true);
-	}
-	else if (a == 1 && b == 3)
-	{
-		rra(&stacks->a, ft_true);
-		pa(&stacks->a, &stacks->b, ft_true);
-		rra(&stacks->a, ft_true);
-	}
-	else if (a == 1 && b == 2)
-	{
-		ra(&stacks->a, ft_true);
-		pa(&stacks->a, &stacks->b, ft_true);
-	}
-	else if (a == 0 && b == 3)
-		rra(&stacks->a, ft_true);
-	else if (a == 0 && b == 2)
-	{
-		ra(&stacks->a, ft_true);
-		ra(&stacks->a, ft_true);
-	}
-	else if (a == 0 && b == 1)
-		ra(&stacks->a, ft_true);
-	// smart_rotate2sort(&stacks->a);
-	pa(&stacks->a, &stacks->b, ft_true);
-	smart_rotate2sort(&stacks->a);
+	return (count_actions);
 }
 
-
-//12 allowed
-void	sort_five2(t_stacks	*stacks)
+/*
+	index 0 push b
+	index 1 push b
+	3 sortieren
+	pa
+	pa
+	
+*/
+long	sort_five(t_stacks	*stacks, t_bool print)
 {
-	pb(&stacks->a, &stacks->b, ft_true);
-	pb(&stacks->a, &stacks->b, ft_true);
-	sort_three(stacks);
-	if (stacks->b->i == 0)
-		pa(&stacks->a, &stacks->b, ft_true);
-	else if (stacks->b->n && stacks->b->n->i == 0)
+	long	count_actions;
+
+	count_actions = 0;
+	if (stack_height(stacks->a) == 5)
 	{
-		rb(&stacks->b, ft_true);
-		pa(&stacks->a, &stacks->b, ft_true);
+		count_actions += push_to_top(stacks, 0, print);
+		count_actions += pb(stacks, print);
+		count_actions += push_to_top(stacks, 1, print);
+		count_actions += pb(stacks, print);
+		count_actions += sort_three(stacks, print);
+		count_actions += pa(stacks, print);
+		count_actions += pa(stacks, print);
 	}
-	if (stacks->b->i == 4)
-	{
-		pa(&stacks->a, &stacks->b, ft_true);
-		ra(&stacks->a, ft_true);
-	}	
-	if (stacks->b && stacks->b->n && stacks->b->n->i == 4)
-	{
-		rb(&stacks->b, ft_true);
-		pa(&stacks->a, &stacks->b, ft_true);
-		ra(&stacks->a, ft_true);
-	}
-	if (!is_sorted(stacks->b))
-		rb(&stacks->b, ft_true);
-	// dbg_end(stacks);
-	while (!is_sorted(stacks->a) || stack_height(stacks->b) != 0)
-	{
-		if (stacks->b)
-		{
-			if (stacks->a->i > stacks->b->i)
-			{
-				pa(&stacks->a, &stacks->b, ft_true);
-			}
-			else
-			{
-				// dbg_end(stacks);
-				// if (stacks->a->i > 2)
-					ra(&stacks->a, ft_true);
-				// else
-					// rra(&stacks->a, ft_true);
-				// smart_rotate2sort(&stacks->a);
-			}
-		}
-		else
-		{
-			// dbg_end(stacks);
-			smart_rotate2sort(&stacks->a);
-		}
-	}
+	else
+		err_exit("error: sort 5 function with a stack != 5 elements!");
+	return (count_actions);
 }

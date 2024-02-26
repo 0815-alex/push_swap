@@ -6,49 +6,59 @@
 /*   By: astein <astein@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 14:10:27 by astein            #+#    #+#             */
-/*   Updated: 2023/06/09 16:29:27 by astein           ###   ########.fr       */
+/*   Updated: 2024/02/26 21:56:41 by astein           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-static void set_indices(t_stack *stack)
+static void	set_indices(t_stack *stack, t_stack	*s[5])
 {
-	t_stack			*min_value;
-	t_stack			*max_value;
-	t_stack			*cur_value;
-	t_stack			*buf;
-	t_stack			*buf2;
-	unsigned int	cur_i;
+	unsigned int	cur_i;	
 
-	min_value = stack;
-	max_value = stack;
-	buf = stack;
-	while (buf)
-	{
-		if (buf->value < min_value->value)
-			min_value = buf;
-		if (buf->value > max_value->value)
-			max_value = buf;
-		buf = buf->n;
-	}
-	set_index(min_value, 0);
 	cur_i = 1;
-	buf = stack;
-	while (buf->n)
+	s[3] = stack;
+	while (s[3]->n)
 	{
-		buf2 = stack;
-		cur_value = max_value;
-		while (buf2)
+		s[4] = stack;
+		s[0] = s[2];
+		while (s[4])
 		{
-			if (!buf2->index_set && buf2->value < cur_value->value)
-				cur_value = buf2;
-			buf2 = buf2->n;
+			if (!s[4]->index_set && s[4]->value < s[0]->value)
+				s[0] = s[4];
+			s[4] = s[4]->n;
 		}
-		set_index(cur_value, cur_i);
+		set_index(s[0], cur_i);
 		cur_i++;
-		buf = buf->n;
+		s[3] = s[3]->n;
 	}
+}
+
+/*
+	buf_stacks
+		0	current value
+		1	min value
+		2	max value
+		3	index 1 aka i
+		4 	index 2 aka j
+*/
+static void	ini_indices(t_stack *stack)
+{
+	t_stack			*s[5];
+
+	s[1] = stack;
+	s[2] = stack;
+	s[3] = stack;
+	while (s[3])
+	{
+		if (s[3]->value < s[1]->value)
+			s[1] = s[3];
+		if (s[3]->value > s[2]->value)
+			s[2] = s[3];
+		s[3] = s[3]->n;
+	}
+	set_index(s[1], 0);
+	set_indices(stack, s);
 }
 
 t_stack	*ini_stack_a(int argc, char **argv)
@@ -74,9 +84,8 @@ t_stack	*ini_stack_a(int argc, char **argv)
 		set_index(last_node, -1);
 		i++;
 	}
-	dbg_printf(no_block, "");
 	last_node->n = NULL;
-	set_indices(new_stack);
+	ini_indices(new_stack);
 	return (new_stack);
 }
 
@@ -90,12 +99,18 @@ void	free_stack(t_stack *stack)
 		free(stack);
 		stack = buf;
 	}
-	free(buf);
+	if (buf)
+		free(buf);
 }
 
 void	free_stacks(t_stacks *stacks)
 {
-	free_stack(stacks->a);
-	free_stack(stacks->b);
-	free(stacks);
+	if (stacks)
+	{
+		if (stacks->a)
+			free_stack(stacks->a);
+		if (stacks->b)
+			free_stack(stacks->b);
+		free(stacks);
+	}
 }

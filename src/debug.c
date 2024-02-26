@@ -1,27 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
+/*   debug.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: astein <astein@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/17 14:10:40 by astein            #+#    #+#             */
-/*   Updated: 2023/05/09 15:38:12 by astein           ###   ########.fr       */
+/*   Created: 2023/06/11 19:08:45 by astein            #+#    #+#             */
+/*   Updated: 2023/06/13 16:47:32 by astein           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft_printf.h"
+#include "../include/push_swap.h"
 
-/**
- * @brief	Adds the node 'new' at the end of the list.
- * 
- * @param	lst	The address of a pointer to the first link of a list.
- * @param	new	The address of a pointer to the nose to be added to the list.
- */
-void	ft_lstadd_back(t_list **lst, t_list *new)
+void	print_stack(t_stack *stack)
 {
-	if (!*lst)
-		ft_lstadd_front(lst, new);
-	else
-		ft_lstlast(*lst)->next = new;
+	if (!stack)
+		ft_printf("(null)");
+	while (stack)
+	{
+		ft_printf("%i ", (int)stack->i);
+		stack = stack->n;
+	}
+	ft_printf("\n");
+}
+
+void	print_stacks(t_stacks *stacks)
+{
+	ft_printf("A: ");
+	print_stack(stacks->a);
+	ft_printf("B: ");
+	print_stack(stacks->b);
+}
+
+void	dbg_end(t_stacks *stacks)
+{
+	print_stacks(stacks);
+	exit(0);
 }
