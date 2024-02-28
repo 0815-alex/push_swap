@@ -17,15 +17,20 @@
 <!-- PROJECT HEADER START -->
 <br />
 <div align="center">
-  <a href="./">
+  <a href="https://github.com/o-reo/push_swap_visualizer">
     <img src="images/logo.gif" alt="Logo" width="600">
-  </a>
+  </a><br>
+  (used the <a href="https://github.com/o-reo/push_swap_visualizer">push_swap_visualizer</a> to visualize)
   <h1 align="center">push_swap</h1>
 <p align="center">
-    The idea of the fdf project, French "fil de fer" for "wireframe model", is to visualise wireframe models. This is done by reading a map with 3-D coordinates from a file and storing it in a linked list. These 3D coordinates are then transformed into 2D coordinates according to the user's preferences and displayed in a window.
+    The purpose of the push_swap project is to explore sorting algorithms. Therefore, the program reads the unique numbers delivered as arguments and stores them on a stack (a). The program uses a second stack (b) and only a few simple operations,       which it outputs to the terminal, to sort the numbers in an ascending order on stack a.
 </p>
 </div>
 <br>
 <!-- PROJECT HEADER END -->
 
 ## :bulb: Lessons learned
+- working with stacks
+- [bubble sort](https://en.wikipedia.org/wiki/Bubble_sort)
+- [radix sort](https://en.wikipedia.org/wiki/Radix_sort)
+- [recursion](https://en.wikipedia.org/wiki/Recursion_(computer_science))
