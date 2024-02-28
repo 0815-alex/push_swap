@@ -34,3 +34,17 @@
 - [bubble sort](https://en.wikipedia.org/wiki/Bubble_sort)
 - [radix sort](https://en.wikipedia.org/wiki/Radix_sort)
 - [recursion](https://en.wikipedia.org/wiki/Recursion_(computer_science))
+
+## Installation
+```
+$ git clone --recurse-submodules https://github.com/ahokcool/push_swap.git  # Clone
+$ cd push_swap                                                              # Change directory
+$ make                                                                      # Compile
+$ ./push_swap 1 4 2 3 7 6 5 8 9                                             # Run
+```
+
+<!-- ahokcool FOOTER-->
+---
+<p align="center">
+  <a href="#top">🔝 back to top 🔝</a>
+</p>
