@@ -20,7 +20,7 @@
   <a href="https://github.com/o-reo/push_swap_visualizer">
     <img src="images/logo.gif" alt="Logo" width="600">
   </a><br>
-  (animation created with a <a href="https://github.com/o-reo/push_swap_visualizer">push_swap_visualizer</a> to visualize)
+  (animation created with a <a href="https://github.com/o-reo/push_swap_visualizer">push_swap_visualizer</a>)
   <h1 align="center">push_swap</h1>
 <p align="center">
     The purpose of the push_swap project is to explore sorting algorithms. Therefore, the program reads the unique numbers delivered as arguments and stores them on a stack (a). The program uses a second stack (b) and only a few simple operations,       which it outputs to the terminal, to sort the numbers in an ascending order on stack a.
